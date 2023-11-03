@@ -1,42 +1,62 @@
 document.addEventListener('DOMContentLoaded', function () {
-    const searchInput = document.querySelector('.dream-input input');
-  
-    searchInput.addEventListener('keydown', function (e) {
-      if (e.key === 'Enter') {
-        e.preventDefault();
-        const dreamText = e.target.value.trim();
-        // searchInput.value = '';
-  
-        identifyThemes(dreamText).then((themes) => {
-          document.querySelector('.themes p').textContent = themes;
-          return generateDreamlikeImage(themes);
-        })
-        .then(imageUrl => {
-          const dalleImageElement = document.querySelector('.dream-image');
-          dalleImageElement.src = imageUrl;
-          dalleImageElement.alt = 'Generated Image based on dream analysis';
-        })
-        .catch(error => {
-          console.error('Error generating image:', error);
-        });
-  
-        analyzeDreamWithGPT(dreamText)
-          .then(analyses => {
-            Object.keys(analyses).forEach((psychologist) => {
-              document.querySelector(`.interpretation.${psychologist.toLowerCase()} p`).textContent =
-                analyses[psychologist];
-            });
+  const searchInput = document.querySelector('.dream-input input');
+  let lastValue = ''; // Store the last value entered
+
+  function setLoadingState(isLoading) {
+      if (isLoading) {
+          // Store the current value and set the input field to "Loading..."
+          lastValue = searchInput.value;
+          searchInput.value = 'Analyzing your dream and creating imagery... 🧚';
+          searchInput.readOnly = true;
+      } else {
+          // Restore the input field to the last value
+          searchInput.value = lastValue;
+          searchInput.readOnly = false;
+      }
+  }
+
+  searchInput.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' && !searchInput.readOnly) {
+          e.preventDefault();
+          const dreamText = searchInput.value.trim();
+
+          // Set loading state
+          setLoadingState(true);
+
+          Promise.all([
+              identifyThemes(dreamText),
+              analyzeDreamWithGPT(dreamText)
+          ])
+          .then(([themes, analyses]) => {
+              document.querySelector('.themes p').textContent = themes;
+              Object.keys(analyses).forEach((psychologist) => {
+                  document.querySelector(`.interpretation.${psychologist.toLowerCase()} p`).textContent = analyses[psychologist];
+              });
+              return generateDreamlikeImage(themes);
+          })
+          .then(imageUrl => {
+              const dalleImageElement = document.querySelector('.dream-image');
+              dalleImageElement.src = imageUrl;
+              dalleImageElement.alt = 'Generated Image based on dream analysis';
           })
           .catch(error => {
-            console.error('Error analyzing dream:', error);
+              console.error('Error:', error);
+          })
+          .finally(() => {
+              // End loading state and restore the original dream text
+              setLoadingState(false);
           });
       }
-    });
   });
-  
+});
+
+
+
+
+
   function identifyThemes(dreamText) {
     const data = {
-      prompt: `Identify the key themes and symbols present in the following dream: '${dreamText}', and explain how these might be interpreted according to dream analysis. Point out specific objects and images as symbols and analyze their potential meanings. Bold in the html the symbols.`,
+      prompt: `Identify the key themes and symbols present in the following dream: '${dreamText}', and explain how these might be interpreted according to dream analysis. Point out specific objects and images as symbols and analyze their potential meanings. Reference specific symbols.`,
       max_tokens: 100,
     };
     return callOpenAI(data);
