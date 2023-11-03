@@ -36,14 +36,14 @@ document.addEventListener('DOMContentLoaded', function () {
   
   function identifyThemes(dreamText) {
     const data = {
-      prompt: `Identify the key themes and symbols present in the following dream: '${dreamText}', and explain how these might be interpreted according to dream analysis. Point out specific objects and images and analyze their potential meanings.`,
+      prompt: `Identify the key themes and symbols present in the following dream: '${dreamText}', and explain how these might be interpreted according to dream analysis. Point out specific objects and images as symbols and analyze their potential meanings. Bold in the html the symbols.`,
       max_tokens: 100,
     };
     return callOpenAI(data);
   }
   
   function generateDreamlikeImage(dreamText) {
-    let prompt = `Create a high-resolution image that reflects the dream narrative: '${dreamText}'. It should be a joyful, serene dreamscape, with purple and pink hues. The visuals should be dreamlike and ethereal, instilling happiness and tranquility in line with the dreamer's description of a perfect, peaceful realm. It should be abstract and like a painting.`;
+    let prompt = `Generate a dream-inspired digital art image in high-res, with serene purples and pinks that includes symbols in this dream: '${dreamText}'. Include whimsical, ethereal elements and symbols in a clear, pastel-toned dreamscape`;
     return callDalleAPI(prompt).then(response => {
       // Ensure that the response is in JSON format
       if (response && response.data && response.data.length > 0 && response.data[0].url) {
