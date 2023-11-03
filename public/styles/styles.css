@@ -113,6 +113,7 @@ body {
   .dream-input {
       width: 800px;
       margin: 0 auto;
+      /* position: relative; */
   }
   
   .dream-input input {
@@ -217,3 +218,145 @@ body {
     line-height: 28px;
     font-weight: bold;
   }
+  
+/* Tablet devices (portrait and landscape) ----------- */
+@media only screen and (min-width: 800px) and (max-width: 1600px) {
+  
+  .hero {
+      /* Adjustments for the hero section on tablets */
+      padding: 20px; /* Example adjustment */
+      background-size: cover; /* Ensure full background coverage */
+      width: 100%;
+  }
+
+  .header-text {
+    width: 100%;
+  }
+
+  .header-text h1 {
+      /* Decrease the font size for the header text on tablets */
+      font-size: 32px; /* Example size, adjust as needed */
+  }
+
+  .dream-input input[type="search"] {
+      /* Adjust the size and padding of the search input field */
+      font-size: 16px; /* Larger font for easier reading */
+      padding: 10px; /* More padding for better touch interaction */
+      width: 90%; /* Adjust width to fit tablet screens */
+      margin: 0 auto 24px 24px;
+  }
+
+  .interpretation {
+      /* Adjust the layout for individual interpretation sections */
+      margin-bottom: 20px; /* Add space between sections */
+  }
+
+  .dream-image {
+      /* Adjust image sizes for tablets */
+      width: 320PX;
+      height: auto; /* Maintain aspect ratio */
+  }
+  header {
+    padding-left: 0;
+  }
+}
+
+/* Mobile devices ----------- */
+@media only screen and (min-width: 600px) and (max-width: 800px) {
+
+  h1 {
+    padding-top: 32px;
+    padding-bottom: 24px;
+  }
+
+  .hero {
+      /* Adjustments for the hero section on mobile */
+      padding: 15px;
+      background-size: contain; /* Change if needed to best fit mobile screens */
+  }
+
+  body {
+    padding: 24px;
+  }
+
+  .header-text h1 {
+      /* Further decrease the font size for mobile */
+      font-size: 32px;
+  }
+
+  .dream-input input[type="search"] {
+      /* Further adjustments for the search input on mobile */
+      font-size: 14px;
+      padding: 8px;
+      width: 100%; /* Make use of the full width on mobile */
+      margin: 0 auto 24px 24px;
+  }
+}
+
+@media only screen and (max-width: 800px) {
+
+  .dream-analysis .dream-analysis .interpretations .interpretation .dream-input {
+    /* Adjust for a single column layout on mobile */
+    width: 96vw !important;
+    padding-left: 24px;
+    padding-right: 24px;
+}
+
+.themes {
+  padding-left: 24px;
+  padding-right: 24px;
+}
+
+.themes p {
+  padding-left: 0;
+}
+
+.interpretations h2 {
+  padding-left: 24px;
+  padding-right: 24px;
+}
+
+.hero {
+  background-image: none !important;
+}
+
+header {
+  padding-left: 0;
+}
+
+.header-text {
+  width: 96vw !important;
+  padding-left: 0;
+}
+
+.dream-input input {
+  width: 96vw !important;
+  margin: 0 0 48px 16px;
+}
+
+
+
+}
+
+@media only screen and (max-width: 600px) {
+  header {
+    padding-left: 24px;
+  }
+
+  .header-text {
+    padding-left: 24px;
+  }
+
+  .header-text h1 {
+    padding-top: 56px;
+    padding-bottom: 40px;
+  }
+
+  .dream-input {
+    margin-bottom: 40px;
+  }
+  
+  .header-text h1 {
+    font-size: 32px;
+  }
+}

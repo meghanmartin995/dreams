@@ -51,9 +51,6 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 
-
-
-
   function identifyThemes(dreamText) {
     const data = {
       prompt: `Identify the key themes and symbols present in the following dream: '${dreamText}', and explain how these might be interpreted according to dream analysis. Point out specific objects and images as symbols and analyze their potential meanings. Reference specific symbols.`,
