@@ -74,9 +74,10 @@ body {
   }
   
   .hero {
-    background-repeat: no-repeat;
     background-size: cover;
-      width: 100vw;
+    background-repeat: repeat-x;
+    background-position: center center;
+    width: 100vw;
   }
   
   h1 {
@@ -100,8 +101,9 @@ body {
   }
   
   .header-text {
-    width: 800px;
-    margin: 0 auto;
+    /* max-width: 800px; */
+    /* margin: 0 auto; */
+    width: 1650px;
   }
   
   .logo {
@@ -191,9 +193,12 @@ body {
   }
   
   h1 {
-    font-size: 32px;
-    line-height: 40px;
+    font-size: 40px;
+    line-height: 48px;
+    text-align: left;
     font-weight: bold;
+    margin: 0 auto;
+    max-width: 1190px;
   }
 
   h2 {
