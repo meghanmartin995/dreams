@@ -153,8 +153,12 @@ body {
   }
   
   .interpretations {
-    margin-bottom: 24px;
+    margin-bottom: 40px;
     margin-top: 40px;
+  }
+
+  .interpretation-reason {
+    padding-bottom: 24px;
   }
   
   .interpretation {
@@ -169,7 +173,7 @@ body {
   }
   
   .interpretations h2 {
-    padding-bottom: 24px;
+    padding-bottom: 8px;
   }
   
   .interpretation p {
