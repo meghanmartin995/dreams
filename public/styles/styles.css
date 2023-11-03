@@ -281,7 +281,7 @@ body {
 
   .header-text h1 {
       /* Further decrease the font size for mobile */
-      font-size: 32px;
+      font-size: 24px;
   }
 
   .dream-input input[type="search"] {
@@ -291,15 +291,27 @@ body {
       width: 100%; /* Make use of the full width on mobile */
       margin: 0 auto 24px 24px;
   }
+
+  .interpretation {
+    width: 600px;
+  }
 }
 
-@media only screen and (max-width: 800px) {
+@media only screen and (max-width: 900px) {
 
   .dream-analysis .dream-analysis .interpretations .interpretation .dream-input {
     /* Adjust for a single column layout on mobile */
     width: 96vw !important;
     padding-left: 24px;
     padding-right: 24px;
+}
+
+.interpretation {
+  width: 400px;
+}
+
+.interpretations {
+  padding-left: 24px;
 }
 
 .themes {
@@ -309,11 +321,16 @@ body {
 
 .themes p {
   padding-left: 0;
+  width: 320px;
 }
 
-.interpretations h2 {
+.themes {
   padding-left: 24px;
-  padding-right: 24px;
+}
+
+.interpretation-reason {
+  padding-left: 0;
+  width: 320px;
 }
 
 .hero {
@@ -331,8 +348,11 @@ header {
 }
 
 .dream-input input {
-  width: 96vw !important;
   margin: 0 0 48px 16px;
+}
+
+.dream-input {
+  margin: 0 !important;
 }
 
 
@@ -356,9 +376,23 @@ header {
 
   .dream-input {
     margin-bottom: 40px;
+    width: 320px;
+  }
+
+  .dream-input input {
+    width: 320px;
+  }
+
+  .interpretation {
+    width: 320px;
+  }
+
+  .themes img {
+    width: 320px;
+    height: auto;
   }
   
   .header-text h1 {
-    font-size: 32px;
+    font-size: 28px;
   }
 }
