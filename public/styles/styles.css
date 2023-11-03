@@ -322,6 +322,7 @@ body {
 
 header {
   padding-left: 0;
+  padding-top: 0;
 }
 
 .header-text {
@@ -341,6 +342,7 @@ header {
 @media only screen and (max-width: 600px) {
   header {
     padding-left: 24px;
+    padding-top: 32px;
   }
 
   .header-text {
