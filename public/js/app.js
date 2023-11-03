@@ -53,14 +53,14 @@ document.addEventListener('DOMContentLoaded', function () {
 
   function identifyThemes(dreamText) {
     const data = {
-      prompt: `Identify the key themes and symbols present in the following dream: '${dreamText}', and explain how these might be interpreted according to dream analysis. Point out specific objects and images as symbols and analyze their potential meanings. Reference specific symbols.`,
+      prompt: `Identify the key themes and symbols present in the following dream: '${dreamText}', and explain how these might be interpreted according to dream analysis. Point out specific objects and images as symbols and analyze their potential meanings. Reference specific symbols. Provide analysis in at most 5 sentences`,
       max_tokens: 100,
     };
     return callOpenAI(data);
   }
   
   function generateDreamlikeImage(dreamText) {
-    let prompt = `Generate a dream-inspired digital art image in high-res, with serene purples and pinks that includes multiple symbols from this dream: '${dreamText}'. Include whimsical, ethereal elements and symbols in a clear, pastel-toned dreamscape`;
+    let prompt = `Generate a dream-inspired digital art image in high-res, with serene purples and pinks that includes multiple symbols from this dream: '${dreamText}'. Include whimsical, ethereal elements and symbols in a clear, pastel-toned dreamscape.`;
     return callDalleAPI(prompt).then(response => {
       // Ensure that the response is in JSON format
       if (response && response.data && response.data.length > 0 && response.data[0].url) {
@@ -101,11 +101,20 @@ document.addEventListener('DOMContentLoaded', function () {
   
   function analyzeDreamWithGPT(dreamText) {
     const psychologists = {
-      Freud: `Using Freud's theory of dreams as wish fulfillments, provide a detailed interpretation of the dream '${dreamText}'. Consider symbolic meanings and the possibility of unmet desires manifesting in the dream. Include the best most compelling explanation of what it could mean, not multiple. Pull out parts of the dream that was entered, and connect that to the analysis.`,
-      Jung: `Analyze the dream '${dreamText}' with Jung's theory of the collective unconscious and archetypes. Identify any archetypal symbols and discuss what collective human experiences they may represent  Include the best most compelling explanation of what it could mean, not multiple. Pull out parts of the dream that was entered, and connect that to the analysis.`,
-      Hall: `Interpret the dream '${dreamText}' by applying Hall's theory that dreams are part of our cognitive processes. Discuss how the dream elements might relate to the dreamer's waking thoughts and experiences.  Include the best most compelling explanation of what it could mean, not multiple. Pull out parts of the dream that was entered, and connect that to the analysis.`,
-      Domhoff: `Examine the dream '${dreamText}' from Domhoff's viewpoint, suggesting that dreams are reflections of our waking concerns. Elucidate how the dream might reveal the dreamer's ongoing life issues or preoccupations.  Include the best most compelling explanation of what it could mean, not multiple. Pull out parts of the dream that was entered, and connect that to the analysis.`,
+      Freud: `Using Freud's theory of dreams as wish fulfillments, provide a detailed interpretation of the dream '${dreamText}'. Consider symbolic meanings and the possibility of unmet desires manifesting in the dream. Include the best most compelling explanation of what it could mean, not multiple. Pull out parts of the dream that was entered, and connect that to the analysis. Provide analysis in at most 5 sentences.`,
+      Jung: `Analyze the dream '${dreamText}' with Jung's theory of the collective unconscious and archetypes. Identify any archetypal symbols and discuss what collective human experiences they may represent  Include the best most compelling explanation of what it could mean, not multiple. Pull out parts of the dream that was entered, and connect that to the analysis. Provide analysis in at most 5 sentences.`,
+      Hall: `Interpret the dream '${dreamText}' by applying Hall's theory that dreams are part of our cognitive processes. Discuss how the dream elements might relate to the dreamer's waking thoughts and experiences.  Include the best most compelling explanation of what it could mean, not multiple. Pull out parts of the dream that was entered, and connect that to the analysis. Provide analysis in at most 5 sentences.`,
+      Domhoff: `Examine the dream '${dreamText}' from Domhoff's viewpoint, suggesting that dreams are reflections of our waking concerns. Elucidate how the dream might reveal the dreamer's ongoing life issues or preoccupations.  Include the best most compelling explanation of what it could mean, not multiple. Pull out parts of the dream that was entered, and connect that to the analysis. Provide analysis in at most 5 sentences.`,
     };
+
+  // function analyzeDreamWithGPT(dreamText) {
+  //   const psychologists = {
+  //     Freud: `Using Freud's theory of dreams as wish fulfillments, provide a detailed interpretation of the dream '${dreamText}'. Consider symbolic meanings and the possibility of unmet desires manifesting in the dream. Include the best most compelling explanation of what it could mean, not multiple. Pull out parts of the dream that was entered, and connect that to the analysis.`,
+  //     Jung: `Using Jung's concept of the collective unconscious, analyze '${dreamText}'. Begin with the most striking symbol in the dream and discuss its archetypal significance. Then, inquire further into the connection of these symbols to universal human experiences for additional insights. Provide the analysis in 3 sentences.`,
+  //     Hall: `Interpret the dream '${dreamText}' by applying Hall's theory that dreams are part of our cognitive processes. Discuss how the dream elements might relate to the dreamer's waking thoughts and experiences.  Include the best most compelling explanation of what it could mean, not multiple. Pull out parts of the dream that was entered, and connect that to the analysis.`,
+  //     Domhoff: `Examine the dream '${dreamText}' from Domhoff's viewpoint, suggesting that dreams are reflections of our waking concerns. Elucidate how the dream might reveal the dreamer's ongoing life issues or preoccupations.  Include the best most compelling explanation of what it could mean, not multiple. Pull out parts of the dream that was entered, and connect that to the analysis.`,
+  //   };
+
   
     const analysesPromises = Object.entries(psychologists).map(([psychologist, prompt]) => {
       const data = {
