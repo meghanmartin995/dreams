@@ -7,6 +7,9 @@ import { dirname } from 'path';
 
 dotenv.config();
 
+
+express.static.mime.define({'font/otf': ['otf']});
+
 const app = express();
 const port = process.env.PORT || 3000;
 
