@@ -45,28 +45,6 @@ app.post('/api/callOpenAI', async (req, res) => {
   }
 });
 
-// Proxy endpoint for DALL·E calls
-// app.post('/api/callDalleAPI', async (req, res) => {
-//   const api_key = process.env.OPENAI_API_KEY; // Your API key from the environment variable
-//   const data = req.body;
-
-//   try {
-//     const apiRes = await fetch('https://api.openai.com/v1/images/generations', {
-//       method: 'POST',
-//       headers: {
-//         'Authorization': `Bearer ${api_key}`,
-//         'Content-Type': 'application/json',
-//       },
-//       body: JSON.stringify(data)
-//     });
-//     const apiResJson = await apiRes.json();
-//     res.json(apiResJson);
-//   } catch (error) {
-//     console.error('Error:', error);
-//     res.status(500).json({ error: 'Error calling DALL·E API' });
-//   }
-// });
-
 app.post('/api/callDalleAPI', async (req, res) => {
   const api_key = process.env.OPENAI_API_KEY;
   const data = req.body;
