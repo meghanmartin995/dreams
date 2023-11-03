@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded', function () {
   }
   
   function generateDreamlikeImage(dreamText) {
-    let prompt = `Generate a dream-inspired digital art image in high-res, with serene purples and pinks that includes symbols in this dream: '${dreamText}'. Include whimsical, ethereal elements and symbols in a clear, pastel-toned dreamscape`;
+    let prompt = `Generate a dream-inspired digital art image in high-res, with serene purples and pinks that includes multiple symbols from this dream: '${dreamText}'. Include whimsical, ethereal elements and symbols in a clear, pastel-toned dreamscape`;
     return callDalleAPI(prompt).then(response => {
       // Ensure that the response is in JSON format
       if (response && response.data && response.data.length > 0 && response.data[0].url) {
@@ -103,7 +103,35 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
   
-  function callOpenAI(data) {
+//   function callOpenAI(data) {
+//     // Fetch request to your Express server
+//     return fetch('/api/callOpenAI', {
+//       method: 'POST',
+//       headers: {
+//         'Content-Type': 'application/json',
+//       },
+//       body: JSON.stringify(data)
+//     })
+//     .then(response => {
+//       if (!response.ok) {
+//         // If the HTTP status code is not 200-299, throw an error
+//         return response.text().then(text => Promise.reject(text));
+//       }
+//       // Assume the response will be JSON and parse it
+//       return response.json();
+//     })
+//     .then(json => {
+//       // Do something with the JSON response
+//       return json.choices[0].text.trim();
+//     })
+//     .catch(error => {
+//       // Handle errors, which could be HTTP-related or JSON parsing-related
+//       console.error('Error:', error);
+//     });
+//   }
+  
+
+function callOpenAI(data) {
     // Fetch request to your Express server
     return fetch('/api/callOpenAI', {
       method: 'POST',
@@ -121,12 +149,19 @@ document.addEventListener('DOMContentLoaded', function () {
       return response.json();
     })
     .then(json => {
-      // Do something with the JSON response
-      return json.choices[0].text.trim();
+      // Check if 'choices' is present and has at least one entry
+      if (json.choices && json.choices.length > 0) {
+        // Do something with the JSON response
+        return json.choices[0].text.trim();
+      } else {
+        // Handle cases where 'choices' is not as expected
+        throw new Error('Invalid response structure from OpenAI API');
+      }
     })
     .catch(error => {
       // Handle errors, which could be HTTP-related or JSON parsing-related
       console.error('Error:', error);
+      throw error; // Re-throw the error so it can be caught by subsequent '.catch' blocks
     });
   }
   
